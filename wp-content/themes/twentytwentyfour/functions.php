@@ -204,3 +204,10 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+
+// Setup function example from learn.wordpress.org
+add_action( 'after_setup_theme', 'theme_slug_setup' );
+
+function theme_slug_setup() {
+	add_theme_support( 'wp-block-styles' );
+}
