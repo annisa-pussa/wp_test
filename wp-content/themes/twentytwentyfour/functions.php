@@ -210,7 +210,41 @@ add_action( 'after_setup_theme', 'theme_slug_setup' );
 
 function theme_slug_setup() {
 	add_theme_support( 'wp-block-styles' );
+	add_editor_style( get_stylesheet_uri() );
+	// If want to add more than one styles:
+	// add_editor_style( array(
+	// 	get_stylesheet_uri(),
+	// 	get_parent_theme_file_uri( 'assets/css/primary.css' )
+	// ) );
 }
 
 // If i want to include another PHP files for this theme:
 // include get_parent_theme_file_path( 'inc/helpers.php' );
+
+add_action( 'wp_enqueue_scripts', 'theme_slug_enqueue_styles' );
+
+function theme_slug_enqueue_styles() {
+	wp_enqueue_style(
+		'theme-slug-style', 
+		// Will add style.css automatically
+		get_stylesheet_uri(),
+		array(),
+		wp_get_theme()->get( 'Version' ),
+		'all'
+	);
+
+	// If we want to add another styles: 
+	// wp_enqueue_style( 
+	// 	'theme-slug-primary',
+	// 	get_parent_theme_file_uri( 'assets/css/primary.css' ),
+	// 	array(),
+	// 	wp_get_theme()->get( 'Version' ),
+	// 	'all'
+	// );
+
+	// If we want to add inline styles:
+	// wp_add_inline_style( 
+	// 	'theme-slug-primary', 
+	// 	'body { background: #eee; }'
+	// );
+}
