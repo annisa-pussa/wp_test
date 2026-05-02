@@ -211,3 +211,6 @@ add_action( 'after_setup_theme', 'theme_slug_setup' );
 function theme_slug_setup() {
 	add_theme_support( 'wp-block-styles' );
 }
+
+// If i want to include another PHP files for this theme:
+// include get_parent_theme_file_path( 'inc/helpers.php' );
